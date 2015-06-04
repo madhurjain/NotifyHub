@@ -6,14 +6,15 @@ import (
 	"net/http"
 )
 
+const DASHBOARD_UID = "dashboard"
+
 type Notification struct {
 	Apn *APN `json:"apn,omitempty"`
 	Gcm *GCM `json:"gcm,omitempty"`
-	Ws  *WS  `json:"ws,omitempty"`
 }
 
 func showHome(c *gin.Context) {
-	c.HTML(http.StatusOK, "home.html", gin.H{"title": "NotifyHub"})
+	c.HTML(http.StatusOK, "home.html", gin.H{"uid": DASHBOARD_UID})
 }
 
 func sendNotification(c *gin.Context) {
@@ -27,15 +28,34 @@ func sendNotification(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"success": "sent"})
 }
 
+func userDashboard(c *gin.Context) {
+	uid := c.Param("uid")
+	c.HTML(http.StatusOK, "user.html", gin.H{"uid": uid})
+}
+
+func wsHandler(c *gin.Context) {
+	uid := c.Param("uid")
+	ServeWs(c.Writer, c.Request, uid)
+}
+
 func main() {
+	gin.SetMode(gin.ReleaseMode)
 	// Initialize Notify Hub
 	InitHub()
 
+	// Initialize Web Sockets
+	InitWebSockets()
+
 	// Init HTTP Server
 	r := gin.Default()
-	r.LoadHTMLFiles("home.html")
+
+	r.LoadHTMLFiles("templates/home.html", "templates/user.html")
+	r.Static("/assets", "./assets")
+
 	r.GET("/", showHome)
 	r.POST("/notify", sendNotification)
+	r.GET("/user/:uid", userDashboard)
+	r.GET("/ws/:uid", wsHandler)
 
 	r.Run(":8080")
 }

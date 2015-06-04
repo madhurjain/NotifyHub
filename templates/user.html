@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>User</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>    
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <h2 class="text-center">User {{ .uid }}</h2>
+        <div class="col-md-6 text-center">
+          <img src="/assets/images/nexus5.png">          
+        </div>
+        <div class="col-md-6 text-center">
+          <img src="/assets/images/iphone5s.png">
+        </div>
+      </div>
+    </div>
+    <script>var uid = "{{ .uid }}";</script>
+    <script src="/assets/js/user.js"></script>
+  </body>
+</html>
