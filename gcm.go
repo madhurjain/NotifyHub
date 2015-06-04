@@ -21,5 +21,7 @@ func SendGCM(gcm *GCM) {
 	// GCM servers to deliver this notification
 	go func(_gcm *GCM) {
 		log.Println("Sending GCM", _gcm.Title, "to", _gcm.RegistrationId)
+		msg := &message{uid: _gcm.RegistrationId, payload: []byte(_gcm.Title)}
+		SendMessage(msg)
 	}(gcm)
 }

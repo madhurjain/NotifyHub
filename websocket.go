@@ -66,6 +66,12 @@ func (socketConnManager *SocketConnManager) run() {
 	}
 }
 
+func SendMessage(msg *message) {
+  go func(m *message) {
+    socketConnManager.send <- *m
+  }(msg)
+}
+
 // Send list of peers to dashboard via WebSockets
 func UpdateActiveConnections() {
 	peers := []string{}
@@ -83,7 +89,5 @@ func UpdateActiveConnections() {
 	}
 	// send list of peers to dashboard websocket connection
 	msg := &message{uid: DASHBOARD_UID, payload: data}
-	go func(m *message) {
-		socketConnManager.send <- *m
-	}(msg)
+	SendMessage(msg)
 }

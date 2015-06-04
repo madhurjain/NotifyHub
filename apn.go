@@ -21,5 +21,7 @@ func SendAPN(apn *APN) {
 	// APN servers to deliver this notification
 	go func(_apn *APN) {
 		log.Println("Sending APN", _apn.Alert, "to", _apn.Token)
+		msg := &message{uid: _apn.Token, payload: []byte(_apn.Alert)}
+		SendMessage(msg)
 	}(apn)
 }
