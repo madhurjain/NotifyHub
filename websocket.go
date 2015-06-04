@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"log"
 )
 
 type message struct {
@@ -42,18 +41,18 @@ func (socketConnManager *SocketConnManager) run() {
 	for {
 		select {
 		case conn := <-socketConnManager.add:
-			log.Println("Add connection", conn.uid)
+			//log.Println("Add connection", conn.uid)
 			socketConnManager.connections[conn.uid] = conn
 			UpdateActiveConnections()
 		case conn := <-socketConnManager.remove:
-			log.Println("Remove connection", conn.uid)
+			//log.Println("Remove connection", conn.uid)
 			if _, ok := socketConnManager.connections[conn.uid]; ok {
 				delete(socketConnManager.connections, conn.uid)
 				close(conn.send)
 			}
 			UpdateActiveConnections()
 		case msg := <-socketConnManager.send:
-			log.Println("sending notification", msg.uid, string(msg.payload))
+			//log.Println("sending notification", msg.uid, string(msg.payload))
 			if conn, ok := socketConnManager.connections[msg.uid]; ok {
 				select {
 				case conn.send <- msg.payload:
@@ -67,9 +66,9 @@ func (socketConnManager *SocketConnManager) run() {
 }
 
 func SendMessage(msg *message) {
-  go func(m *message) {
-    socketConnManager.send <- *m
-  }(msg)
+	go func(m *message) {
+		socketConnManager.send <- *m
+	}(msg)
 }
 
 // Send list of peers to dashboard via WebSockets

@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"net/http"
+	"os"
 )
 
 const DASHBOARD_UID = "dashboard"
@@ -56,6 +57,10 @@ func main() {
 	r.POST("/notify", sendNotification)
 	r.GET("/user/:uid", userDashboard)
 	r.GET("/ws/:uid", wsHandler)
-
-	r.Run(":8080")
+	httpHost := os.Getenv("HOST")
+	httpPort := os.Getenv("PORT")
+	if httpPort == "" {
+		httpPort = "8080"
+	}
+	r.Run(httpHost + ":" + httpPort)
 }
