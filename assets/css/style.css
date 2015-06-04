@@ -17,10 +17,11 @@
 .nexus .drawer {
   top: 58px;
   left: 29px;
-  height: 100px;
+  height: 125px;
   width: 219px;
   background: #333;
   opacity: 0.75;
+  text-align: left;
 }
 
 .nexus .drawer p {
@@ -36,10 +37,11 @@
 .iphone .drawer {
   top: 71px;
   left: 16px;
-  height: 100px;
+  height: 125px;
   width: 209px;
   background: #666;
   opacity: 0.9;
+  text-align: left;
 }
 
 .iphone .drawer p {

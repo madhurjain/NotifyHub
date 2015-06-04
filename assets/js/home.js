@@ -1,4 +1,4 @@
-$(function() {
+$(function() {    
   
   var now = Date.now();
   $('#addUser').attr('href', '/user/' + now);
@@ -27,11 +27,13 @@ $(function() {
     var toUser = "" + $(this).data('uid');  // force uid to string
     var action = $(this).data('action');
     var notify = {};
-    if (action.indexOf('apn') != -1) {
-      notify['apn'] = {"token": toUser, "alert": "title of the notification", "badge": 1, "sound": "bingbong.aiff"};
+    if (action.indexOf('apn') != -1) {      
+      var randomMessage = quotes[Math.floor((Math.random() * 10))];
+      notify['apn'] = {"token": toUser, "alert": randomMessage, "badge": 1, "sound": "bingbong.aiff"};
     }
     if (action.indexOf('gcm') != -1) {
-      notify['gcm'] = {"registration_id": toUser, "title": "testing gcm", "body": "description of the message", "tag": "unique"};
+      var randomMessage = quotes[Math.floor((Math.random() * 10))];
+      notify['gcm'] = {"registration_id": toUser, "title": randomMessage, "body": "description of the message", "tag": "unique"};
     }
     $.ajax({
       url: '/notify',
@@ -61,4 +63,20 @@ $(function() {
     }
     $userTableRows.append(html)
   }
+  
+  
+  var quotes = [
+    "I would like to die on Mars. Just not on impact. - Elon Musk",
+    "Life is about making an impact, not making an income.",
+    "Whatever the mind of man can conceive and believe, it can achieve.",
+    "Only the wisest and stupidest of men never change.",
+    "Our greatest glory is not in never falling, but in rising every time we fall.",
+    "Success is a lousy teacher. It seduces smart people into thinking they can't lose.",
+    "Intellectual property has the shelf life of a banana.",
+    "The best time to plant a tree was 20 years ago. The second best time is now.",
+    "Any product that needs a manual to work is broken.",
+    "I hear and I forget. I see and I remember. I do and I understand.",
+    "Choose a job you love, and you will never have to work a day in your life."
+  ];
+  
 });
