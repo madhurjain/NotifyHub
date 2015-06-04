@@ -1,0 +1,39 @@
+{
+	"ImportPath": "github.com/gin-gonic/gin",
+	"GoVersion": "go1.4.2",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/dustin/go-broadcast",
+			"Rev": "3bdf6d4a7164a50bc19d5f230e2981d87d2584f1"
+		},
+		{
+			"ImportPath": "github.com/manucorporat/sse",
+			"Rev": "c574f6c50c8594f93d28b03a1bbd87b4a3899093"
+		},
+		{
+			"ImportPath": "github.com/manucorporat/stats",
+			"Rev": "8f2d6ace262eba462e9beb552382c98be51d807b"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Rev": "043ae16291351db8465272edf465c9f388161627"
+		},
+		{
+			"ImportPath": "github.com/stretchr/testify/assert",
+			"Comment": "v1.0",
+			"Rev": "232e8563676cd15c3a36ba5e675ad4312ac4cb11"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "84ba27dd5b2d8135e9da1395277f2c9333a2ffda"
+		},
+		{
+			"ImportPath": "gopkg.in/bluesuncorp/validator.v5",
+			"Comment": "v5.4",
+			"Rev": "07cbdd2e6dfd947b002e83c13b775c7580fab2d5"
+		}
+	]
+}

@@ -1,0 +1,36 @@
+{
+	"ImportPath": "github.com/madhurjain/notifyhub",
+	"GoVersion": "go1.4",
+	"Deps": [
+		{
+			"ImportPath": "github.com/gin-gonic/gin",
+			"Comment": "v1.0rc1-73-g21979d6",
+			"Rev": "21979d6a99b48237fd09b49f818718e4a2b3f11d"
+		},
+		{
+			"ImportPath": "github.com/gorilla/websocket",
+			"Rev": "a3ec486e6a7a41858210b0fc5d7b5df593b3c4a3"
+		},
+		{
+			"ImportPath": "github.com/manucorporat/sse",
+			"Rev": "404710eaa45fcb6ac1731ce1808110e18594c3c4"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Rev": "d67e0b7d1797975196499f79bcc322c08b9f218b"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-isatty",
+			"Rev": "ae0b1f8f8004be68d791a576e3d8e7648ab41449"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "84afb0af0050ae286aa9ced0c29383c2a866a925"
+		},
+		{
+			"ImportPath": "gopkg.in/bluesuncorp/validator.v5",
+			"Comment": "v5.5.1",
+			"Rev": "1d61bf31487322f9bffa4d9f1eda4a53175b58dd"
+		}
+	]
+}
