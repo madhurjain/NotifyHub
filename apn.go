@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 )
 
@@ -21,7 +22,12 @@ func SendAPN(apn *APN) {
 	// APN servers to deliver this notification
 	go func(_apn *APN) {
 		log.Println("Sending APN", _apn.Alert, "to", _apn.Token)
-		msg := &message{uid: _apn.Token, payload: []byte(_apn.Alert)}
+		data, err := json.Marshal(_apn)
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		msg := &message{uid: _apn.Token, payload: data}
 		SendMessage(msg)
 	}(apn)
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 )
 
@@ -21,7 +22,12 @@ func SendGCM(gcm *GCM) {
 	// GCM servers to deliver this notification
 	go func(_gcm *GCM) {
 		log.Println("Sending GCM", _gcm.Title, "to", _gcm.RegistrationId)
-		msg := &message{uid: _gcm.RegistrationId, payload: []byte(_gcm.Title)}
+		data, err := json.Marshal(_gcm)
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		msg := &message{uid: _gcm.RegistrationId, payload: data}
 		SendMessage(msg)
 	}(gcm)
 }
