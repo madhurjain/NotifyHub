@@ -1,19 +1,22 @@
 ## NotifyHub
 
-Standalone web service which accepts notifications as JSON and routes to APN or GCM
+Standalone web service which accepts notifications as JSON and routes to APN or GCM Push Notification Services
+More notification services can be added by implementing the broker's `Service` interface
 
-`POST` JSON in the below format to `/notify`
+#### Sample
+
+`POST` below JSON to `/notify` endpoint
 
 ```json
 {
   "apn": {
-    "token": "002244aaccddeeff",
-    "alert": "title of the notification",
+    "tokens": ["0a24de", "0a24de"]
+    "alert": "testing an apn",
     "badge": 1,
     "sound": "bingbong.aiff"
   },
   "gcm": {
-    "registration_id": "aaaabbbbccccddddeeeeffff001122",
+    "registration_ids": ["ab1d2c", "fe45d9"]
     "title": "testing gcm",
     "body": "description of the message",
     "tag": "unique"	
@@ -21,13 +24,3 @@ Standalone web service which accepts notifications as JSON and routes to APN or 
 }
 ```
 
-#### *[DEMO]*
-
-Implements WebSocket and sends a mock APN / GCM notification
-
-http://notifyhub.herokuapp.com
-
-- Open the above demo link
-- Click `Spawn User` to spawn mock users in different tabs
-- You can also spawn users in different browser or on a different computer by visiting link `/user/blah`
-- Click `Send APN`, `Send GCM` or `Send Both` to send notification to the user
